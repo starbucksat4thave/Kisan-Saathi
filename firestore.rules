@@ -1,0 +1,202 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Default-deny safety net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function isValidFarmerProfile(data) {
+      return data.userId is string && data.userId == request.auth.uid &&
+             data.name is string && data.name.size() > 0 && data.name.size() <= 100 &&
+             (!('phone' in data) || (data.phone is string && data.phone.size() <= 30)) &&
+             data.language is string && data.language.size() <= 10 &&
+             data.village is string && data.village.size() <= 100 &&
+             data.tehsil is string && data.tehsil.size() <= 100 &&
+             (!('level' in data) || (data.level is string && data.level.size() <= 50)) &&
+             (!('barkat_total_maund' in data) || data.barkat_total_maund is number) &&
+             (!('leaderboard_opt_in' in data) || data.leaderboard_opt_in is bool) &&
+             (!('nickname' in data) || (data.nickname is string && data.nickname.size() <= 50)) &&
+             (!('points' in data) || data.points is int || data.points is number) &&
+             (!('streak_weeks' in data) || data.streak_weeks is int || data.streak_weeks is number);
+    }
+
+    function isValidField(data) {
+      return data.userId is string && data.userId == request.auth.uid &&
+             data.name is string && data.name.size() > 0 && data.name.size() <= 100 &&
+             data.area_acre is number && data.area_acre > 0 && data.area_acre <= 10000 &&
+             data.centroid_lat is number && data.centroid_lat >= -90.0 && data.centroid_lat <= 90.0 &&
+             data.centroid_lon is number && data.centroid_lon >= -180.0 && data.centroid_lon <= 180.0 &&
+             (!('water_access' in data) || (data.water_access is string && data.water_access.size() <= 50)) &&
+             (!('soil_texture' in data) || (data.soil_texture is string && data.soil_texture.size() <= 50));
+    }
+
+    function isValidSeason(data) {
+      return data.userId is string && data.userId == request.auth.uid &&
+             data.field_id is string && data.field_id.size() <= 128 &&
+             data.crop is string && data.crop.size() <= 50 &&
+             data.season is string && data.season.size() <= 50 &&
+             data.status is string && data.status.size() <= 30 &&
+             (!('variety' in data) || (data.variety is string && data.variety.size() <= 100)) &&
+             (!('sowing_date' in data) || (data.sowing_date is string && data.sowing_date.size() <= 30)) &&
+             (!('harvest_date' in data) || (data.harvest_date is string && data.harvest_date.size() <= 30)) &&
+             (!('yield_maund' in data) || data.yield_maund is number) &&
+             (!('notes' in data) || (data.notes is string && data.notes.size() <= 2000));
+    }
+
+    function isValidDiaryEntry(data) {
+      return data.userId is string && data.userId == request.auth.uid &&
+             data.season_id is string && data.season_id.size() <= 128 &&
+             data.date is string && data.date.size() <= 30 &&
+             data.type is string && data.type.size() <= 50 &&
+             (!('detail' in data) || (data.detail is string && data.detail.size() <= 1000)) &&
+             (!('source' in data) || (data.source is string && data.source.size() <= 50)) &&
+             (!('matched_advisory_id' in data) || (data.matched_advisory_id is string && data.matched_advisory_id.size() <= 128));
+    }
+
+    function isValidBarkatEvent(data) {
+      return data.userId is string && data.userId == request.auth.uid &&
+             data.advisory_id is string && data.advisory_id.size() <= 128 &&
+             data.maund_estimate is number && data.maund_estimate >= 0 &&
+             (!('loss_factor_id' in data) || (data.loss_factor_id is string && data.loss_factor_id.size() <= 100)) &&
+             (!('basis' in data) || (data.basis is string && data.basis.size() <= 500)) &&
+             (!('placeholder' in data) || data.placeholder is bool);
+    }
+
+    function isValidLeaderboardEntry(data) {
+      return data.farmerId is string && data.farmerId == request.auth.uid &&
+             data.nickname is string && data.nickname.size() > 0 && data.nickname.size() <= 50 &&
+             data.village is string && data.village.size() > 0 && data.village.size() <= 100 &&
+             data.score is number && data.score >= 0 &&
+             (!('streak_weeks' in data) || (data.streak_weeks is number && data.streak_weeks >= 0));
+    }
+
+    // Farmer Profile
+    match /users/{userId} {
+      allow get: if isOwner(userId);
+      allow list: if false;
+
+      allow create: if isOwner(userId) &&
+                       isValidId(userId) &&
+                       request.resource.data.userId == request.auth.uid &&
+                       request.resource.data.createdAt is timestamp &&
+                       request.resource.data.createdAt <= request.time &&
+                       isValidFarmerProfile(request.resource.data);
+
+      allow update: if isOwner(userId) &&
+                       request.resource.data.userId == resource.data.userId &&
+                       request.resource.data.createdAt == resource.data.createdAt &&
+                       (!('updatedAt' in request.resource.data) || (request.resource.data.updatedAt is timestamp && request.resource.data.updatedAt <= request.time)) &&
+                       isValidFarmerProfile(request.resource.data);
+
+      allow delete: if isOwner(userId);
+
+      // Subcollection: Fields
+      match /fields/{fieldId} {
+        allow get, list: if isOwner(userId);
+
+        allow create: if isOwner(userId) &&
+                         isValidId(fieldId) &&
+                         request.resource.data.userId == request.auth.uid &&
+                         request.resource.data.createdAt is timestamp &&
+                         request.resource.data.createdAt <= request.time &&
+                         isValidField(request.resource.data);
+
+        allow update: if isOwner(userId) &&
+                         request.resource.data.userId == resource.data.userId &&
+                         request.resource.data.createdAt == resource.data.createdAt &&
+                         isValidField(request.resource.data);
+
+        allow delete: if isOwner(userId);
+      }
+
+      // Subcollection: Seasons
+      match /seasons/{seasonId} {
+        allow get, list: if isOwner(userId);
+
+        allow create: if isOwner(userId) &&
+                         isValidId(seasonId) &&
+                         request.resource.data.userId == request.auth.uid &&
+                         request.resource.data.createdAt is timestamp &&
+                         request.resource.data.createdAt <= request.time &&
+                         isValidSeason(request.resource.data);
+
+        allow update: if isOwner(userId) &&
+                         request.resource.data.userId == resource.data.userId &&
+                         request.resource.data.createdAt == resource.data.createdAt &&
+                         isValidSeason(request.resource.data);
+
+        allow delete: if isOwner(userId);
+      }
+
+      // Subcollection: Diary Entries
+      match /diary/{entryId} {
+        allow get, list: if isOwner(userId);
+
+        allow create: if isOwner(userId) &&
+                         isValidId(entryId) &&
+                         request.resource.data.userId == request.auth.uid &&
+                         request.resource.data.createdAt is timestamp &&
+                         request.resource.data.createdAt <= request.time &&
+                         isValidDiaryEntry(request.resource.data);
+
+        allow update: if isOwner(userId) &&
+                         request.resource.data.userId == resource.data.userId &&
+                         request.resource.data.createdAt == resource.data.createdAt &&
+                         isValidDiaryEntry(request.resource.data);
+
+        allow delete: if isOwner(userId);
+      }
+
+      // Subcollection: Barkat Events
+      match /barkat_events/{eventId} {
+        allow get, list: if isOwner(userId);
+
+        allow create: if isOwner(userId) &&
+                         isValidId(eventId) &&
+                         request.resource.data.userId == request.auth.uid &&
+                         request.resource.data.createdAt is timestamp &&
+                         request.resource.data.createdAt <= request.time &&
+                         isValidBarkatEvent(request.resource.data);
+
+        allow update: if false; // Barkat events are immutable audit records
+        allow delete: if isOwner(userId);
+      }
+    }
+
+    // Community village leaderboard
+    match /leaderboard/{farmerId} {
+      allow get, list: if isSignedIn();
+
+      allow create: if isSignedIn() &&
+                       request.auth.uid == farmerId &&
+                       isValidId(farmerId) &&
+                       request.resource.data.farmerId == request.auth.uid &&
+                       request.resource.data.updatedAt is timestamp &&
+                       request.resource.data.updatedAt <= request.time &&
+                       isValidLeaderboardEntry(request.resource.data);
+
+      allow update: if isSignedIn() &&
+                       request.auth.uid == farmerId &&
+                       request.resource.data.farmerId == resource.data.farmerId &&
+                       request.resource.data.updatedAt is timestamp &&
+                       request.resource.data.updatedAt <= request.time &&
+                       isValidLeaderboardEntry(request.resource.data);
+
+      allow delete: if isSignedIn() && request.auth.uid == farmerId;
+    }
+  }
+}
