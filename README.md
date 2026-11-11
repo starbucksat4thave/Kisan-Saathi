@@ -1,73 +1,143 @@
-# 🌍 WanderPulse — AI Travel & Exploration Studio
+# Kisan Saathi (کسان ساتھی)
 
-WanderPulse is a next-generation Android application designed for world explorers, cultural travelers, and photographers. Built with modern Android architecture using **Kotlin** and **Jetpack Compose (Material Design 3)**, it unites real-time exploration maps, multimodal generative AI, live voice interactions, and trip journaling.
+**A voice-first farming companion for rainfed smallholder farmers in Pothohar, Pakistan.**
 
----
+Kisan Saathi helps farmers make timely, practical decisions throughout the wheat-growing season. The project brings together NASA Earth-observation datasets, regional agronomy guidance, Urdu-first assistance, and simple tools for tracking field health and food-loss prevention.
 
-## 🌟 Key Features
+## Project highlights
 
-### 1. 🗺️ Interactive Maps & Place Discovery
-- **Topographic Interactive Map Canvas**: Vector-rendered map with real-time panning, zooming, custom thematic location pins, and user GPS pulsing beacon.
-- **Search & Maps Grounding**:
-  - **Google Maps Grounding**: Verifies live operating hours, exact coordinates, ratings, and foot-traffic wait times.
-  - **Google Search Grounding**: Delivers seasonal travel advisories, local festival schedules, and regional cultural etiquette.
-- **Category Filtering**: Instant sorting by Landmarks, Nature Wonders, Culinary Spots, Cultural Temples, and Transit Hubs.
-- **Place Details & Directions**: Deep dives with address, coordinates, opening status, and direct "+ Itinerary" scheduling.
+- **Seasonal crop roadmap** — guided stages for sowing, tillering, pest scouting, grain filling, and harvest, with clear progress states and actionable advisories.
+- **Earth-observation context** — uses datasets and products including NASA SMAP soil moisture, GPM IMERG precipitation, Harmonized Landsat–Sentinel (HLS), NASA POWER, ECOSTRESS, and NASADEM. Advisory source labels help explain where information comes from.
+- **Barkat (برکت) tracker** — illustrates estimated food loss prevented and explains the assumptions behind the estimate.
+- **Season history** — connects current conditions with previous-season notes and outcomes.
+- **Summer crop planning** — compares summer fallow, mungbean, and sorghum fodder against priorities such as water, income, soil health, and cattle feed.
+- **Field health** — visualizes vegetation-health trends, including NDVI comparisons.
+- **Ask Kisan Saathi** — an Urdu/English AI assistance experience for farmer questions.
+- **Demo timeline** — lets users move through the crop season and see how roadmap guidance changes.
 
-### 2. 🎙️ Live Voice Companion (`gemini-3.8-live`)
-- **Live Conversational Mode**: Continuous audio turn-taking with Gemini 3.8 Live API.
-- **Dynamic Waveform Visualizer**: Animated canvas audio visualizer responding to mic amplitude and speech output.
-- **Context-Aware Prompts**: Sunset recommendations, monument history, foreign phrase translations, and leisure walking guides.
+The primary Android application is built with Kotlin and Jetpack Compose. The repository also contains a Flutter client under `kisan_saathi_flutter/`; its current configuration uses mock repository and voice-service implementations by default.
 
-### 3. 📝 Instant Audio Transcriber (`gemini-3.5-transcribe`)
-- **Field Audio Memos**: High-accuracy speech-to-text recording with confidence scoring and language detection.
-- **Quick Actions**: One-tap copy to clipboard and direct saving to your WanderPulse Travel Journal.
+## Repository layout
 
-### 4. 🎨 Multimodal Vision & Postcard Studio
-- **Landmark Analyzer (`gemini-4-argon`)**: Multimodal vision analysis identifying architectural periods, historical construction methods, framing advice for photography, and secret spots within 5 minutes.
-- **UHD Postcard Generator (`gemini-3-pro-image-preview`)**: Generates custom artwork with explicit resolution affordances: **1K**, **2K**, and **4K**.
-- **Prompt-Based Image Editing (`gemini-nano-banana-2.1`)**: Text-guided image transformations (e.g., adding neon constellations, changing to golden hour sunset, atmospheric mist).
-
-### 5. 📔 Expedition Journal & Itinerary Planner
-- **Day-by-Day Scheduling**: Organize discovered stops, morning/afternoon time slots, and personalized travel tips.
-- **Markdown Trip Export**: Export complete itinerary summaries and voice memos with one click.
-- **GitHub Deployment Assistant**: Built-in instructions and Git CLI reference to push your code directly to GitHub.
-
----
-
-## 🚀 How to Deploy to GitHub
-
-### Option A: From AI Studio Web UI (Recommended)
-1. In Google AI Studio, click the **Settings / Export** menu in the top-right corner.
-2. Select **"Push to GitHub"**.
-3. Authenticate with your GitHub account and specify your repository name.
-4. Click **"Push"** — AI Studio will commit the full project with all assets!
-
-### Option B: Using Git in Terminal
-```bash
-git init
-git add .
-git commit -m "Initial release of WanderPulse AI Exploration Studio"
-git branch -M main
-git remote add origin https://github.com/YOUR_USERNAME/wanderpulse.git
-git push -u origin main
+```text
+.
+├── app/                         # Native Android application (Kotlin + Compose)
+├── config/                      # Crop, threshold, regional, and estimation configuration
+├── docs/                        # Product decisions, data notes, and supporting documentation
+├── gradle/                      # Gradle wrapper and version catalog
+├── kisan_saathi_flutter/         # Flutter client
+├── firestore.rules              # Firestore security rules
+├── firestore.test.js            # Firestore rules tests
+├── firebase.json                # Firebase emulator/project configuration
+├── build.gradle.kts             # Root Android build configuration
+└── settings.gradle.kts
 ```
 
----
+## Tech stack
 
-## 🛠️ Tech Stack & Architecture
+| Area | Technology |
+|---|---|
+| Android app | Kotlin, Jetpack Compose, Material 3 |
+| Build | Gradle Kotlin DSL, Gradle version catalog |
+| Backend services | Firebase Authentication, Cloud Firestore, Firebase AI Logic |
+| AI assistance | Gemini through Firebase AI Logic |
+| Flutter client | Flutter, Dart, Material |
+| Localization | English and Urdu; bundled Nastaliq and Arabic-compatible fonts |
+| Earth observation | NASA SMAP, GPM IMERG, HLS, NASA POWER, ECOSTRESS, NASADEM |
+| Configuration and tests | YAML configuration, Firestore security rules, Gradle and Node.js tests |
 
-- **Language**: Kotlin 2.2+
-- **UI Toolkit**: Jetpack Compose with Material Design 3 (Dynamic Color)
-- **Image Loading**: Coil Compose
-- **Architecture**: MVVM with unidirectional data flow (UDF) & Kotlin Coroutines StateFlow
-- **Graphics**: Hardware-accelerated Jetpack Compose Canvas (custom map engine & audio waveform)
-- **Build System**: Gradle Kotlin DSL (`build.gradle.kts`) with Version Catalog (`libs.versions.toml`)
-- **API & Grounding Models**:
-  - `gemini-3.8-flash`: General intelligence & Search/Maps Grounding
-  - `gemini-3.8-live`: Real-time voice conversations
-  - `gemini-3.5-transcribe`: High-fidelity audio transcription
-  - `gemini-3-pro-image-preview`: 1K, 2K, and 4K image generation
-  - `gemini-nano-banana-2.1`: Text-driven image editing
-  - `gemini-4-argon`: Deep multimodal architectural vision & reasoning
-  - `gemini-3.1-flash-lite`: Fast-turn factual assistance
+## Getting started
+
+### Requirements
+
+For the native Android app:
+
+- Android Studio (or the Android command-line tools)
+- JDK 21
+- Android SDK configured for the project (compile SDK 36)
+- Firebase project configuration if you want to use Firebase-backed features
+
+For the Flutter client:
+
+- Flutter SDK compatible with Dart 3.2 or later
+- Android tooling if you want to run it on an Android device or emulator
+
+### Native Android app
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/starbucksat4thave/Kisan-Saathi.git
+   cd Kisan-Saathi
+   ```
+
+2. Add your Firebase Android configuration at `app/google-services.json` and configure any required local secrets in `.env`. Do not commit private keys, service-account files, signing keystores, or local secret files.
+
+3. Build the debug APK:
+
+   ```bash
+   ./gradlew :app:assembleDebug
+   ```
+
+4. Run unit tests:
+
+   ```bash
+   ./gradlew :app:testDebugUnitTest
+   ```
+
+On Windows, use `gradlew.bat` instead of `./gradlew`.
+
+### Flutter client
+
+The Flutter client is in its own directory:
+
+```bash
+cd kisan_saathi_flutter
+flutter pub get
+```
+
+If the Android platform scaffold has not been generated in your checkout, create it once and then run the app:
+
+```bash
+flutter create . --platforms=android
+flutter run
+```
+
+The current Flutter API configuration selects a mock backend by default. See [BACKEND_INTEGRATION_GUIDE.md](kisan_saathi_flutter/BACKEND_INTEGRATION_GUIDE.md) before switching it to a live API.
+
+## Firestore rules and demo tests
+
+The repository includes Firestore security rules and a Node.js rules test suite. The emulator is configured for port `8085`.
+
+To run the rules tests, install the Firebase rules testing dependencies in your local Node.js environment, start the Firestore emulator, and then run:
+
+```bash
+make demo
+```
+
+The Android test task can be run with:
+
+```bash
+make test
+```
+
+See [docs/README.md](docs/README.md), [docs/DATA.md](docs/DATA.md), [docs/DECISIONS.md](docs/DECISIONS.md), and [docs/RECORDINGS.md](docs/RECORDINGS.md) for additional project context.
+
+## Configuration and security notes
+
+- Keep `.env`, API tokens, Firebase service-account credentials, signing keys, and keystores out of version control.
+- Provide your own Firebase project configuration for local development.
+- Review Firebase App Check and Firestore rules configuration before deploying to production.
+- Earth-observation products have different spatial resolutions and update latencies. Check the source and timestamp shown with an advisory before using it for a field decision.
+- The app provides decision support, not a substitute for local agronomic advice or on-farm assessment.
+
+## Contributing
+
+1. Create a feature branch.
+2. Keep changes focused and add or update tests where appropriate.
+3. Run the relevant Android, Flutter, or Firestore checks.
+4. Open a pull request describing the change and any setup required.
+
+## License
+
+No license file is currently included. Unless a license is added, the project remains subject to the default copyright terms.
