@@ -1,0 +1,65 @@
+# Crops Database for Pothohar Rotation & AquaCrop Simulation
+
+crops:
+  wheat:
+    name_ur: "گندم"
+    name_en: "Wheat"
+    season: "rabi"
+    typical_sowing_window: "25 Oct - 15 Nov"
+    harvest_window: "15 Apr - 30 Apr"
+    expected_yield_maund_per_acre: 32.0
+    price_per_maund_pkr: 3900
+    water_requirement_mm: 350.0
+
+  summer_rotation_options:
+    fallow:
+      id: "fallow"
+      name_ur: "خالی کھیت (روایتی طریقہ)"
+      name_en: "Summer Fallow (Current Practice)"
+      description_ur: "گرمیوں میں کھیت خالی چھوڑنا، پانی بچانے کا روایتی گمان لیکن مٹی کے کٹاؤ کا خطرہ"
+      avg_yield_unit: "کچھ نہیں"
+      avg_water_use_mm: 80.0
+      soil_cover_score: 20
+      gross_income_pkr_per_acre: 0
+      seed_and_input_cost_pkr: 0
+      net_margin_pkr_per_acre: 0
+      bad_year_loss_pkr: 0
+      cattle_feed_score: 10
+      soil_erosion_risk: "High"
+      win_years_against_fallow_pct: 0
+
+    mungbean:
+      id: "mungbean"
+      name_ur: "مونگ کی دال (پھلی دار فصل)"
+      name_en: "Mungbean (Green Gram)"
+      description_ur: "60-70 دن کی نقد آور فصل۔ ہوا سے نائٹروجن جذب کر کے آئندہ گندم کی کھاد کا خرچ 30 فیصد کم کرتی ہے"
+      avg_yield_unit: "8 من فی ایکڑ"
+      avg_yield_maund_per_acre: 8.0
+      price_per_maund_pkr: 8500
+      avg_water_use_mm: 190.0
+      soil_cover_score: 85
+      gross_income_pkr_per_acre: 68000
+      seed_and_input_cost_pkr: 18000
+      net_margin_pkr_per_acre: 50000
+      bad_year_loss_pkr: 5000
+      cattle_feed_score: 40
+      soil_erosion_risk: "Very Low"
+      win_years_against_fallow_pct: 85
+
+    sorghum_fodder:
+      id: "sorghum_fodder"
+      name_ur: "جوار کا ہرا چارہ"
+      name_en: "Sorghum Fodder (Jowar)"
+      description_ur: "مویشیوں کے لیے بہترین سبز چارہ۔ دودھ کی پیداوار بڑھاتا ہے اور گرمی کا مقابلہ کرنے کی زبردست صلاحیت رکھتا ہے"
+      avg_yield_unit: "350 من فی ایکڑ"
+      avg_yield_maund_per_acre: 350.0
+      price_per_maund_pkr: 220
+      avg_water_use_mm: 240.0
+      soil_cover_score: 95
+      gross_income_pkr_per_acre: 77000
+      seed_and_input_cost_pkr: 22000
+      net_margin_pkr_per_acre: 55000
+      bad_year_loss_pkr: 2000
+      cattle_feed_score: 100
+      soil_erosion_risk: "Lowest"
+      win_years_against_fallow_pct: 90

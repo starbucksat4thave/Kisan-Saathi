@@ -1,0 +1,36 @@
+name: kisan_saathi
+description: "Kisan Saathi — Minimalist voice-first mobile companion for smallholder farmers in Pothohar, Pakistan."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.2.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+
+  fonts:
+    - family: NotoNastaliqUrdu
+      fonts:
+        - asset: assets/fonts/noto_nastaliq_urdu.ttf
+          weight: 400
+        - asset: assets/fonts/noto_nastaliq_urdu.ttf
+          weight: 700
+    - family: NotoSansArabic
+      fonts:
+        - asset: assets/fonts/noto_sans_arabic.ttf
+          weight: 400
+        - asset: assets/fonts/noto_sans_arabic.ttf
+          weight: 600

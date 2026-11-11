@@ -1,0 +1,105 @@
+# Gamification & Barkat Milestones for Kisan Saathi
+
+points_engine:
+  confirmed_right_time_action: 20
+  action_inside_high_risk_window: 40
+  skipping_unneeded_spray_after_scouting: 30
+  complete_season_diary: 100
+  weekly_streak_bonus: 10
+  anti_gaming_rules:
+    require_advisory_window_match: true
+    cross_check_satellite_ndvi: true
+    flag_unlikely_harvest_in_green_crop: true
+
+levels:
+  - id: "naya_kisan"
+    name_ur: "نیا کسان"
+    name_en: "Naya Kisan"
+    min_points: 0
+    icon: "sprout"
+  - id: "mehnati_kisan"
+    name_ur: "محنتی کسان"
+    name_en: "Mehnati Kisan"
+    min_points: 100
+    icon: "hands_planting"
+  - id: "hoshiyar_kisan"
+    name_ur: "ہوشیار کسان"
+    name_en: "Hoshiyar Kisan"
+    min_points: 250
+    icon: "satellite_eye"
+  - id: "ustaad_kisan"
+    name_ur: "استاد کسان"
+    name_en: "Ustaad Kisan"
+    min_points: 500
+    icon: "golden_sheaf"
+  - id: "rehnuma"
+    name_ur: "رہنما کسان"
+    name_en: "Rehnuma"
+    min_points: 1000
+    icon: "village_elder"
+
+badges:
+  - id: "wattar_wala"
+    title_ur: "وتر والا"
+    title_en: "Wattar Wala"
+    description_ur: "زمین کے صحیح وتر پر بروقت بوائی کی"
+    criteria: "Sowed crop within recommended SMAP moisture window"
+    icon: "water_drop_check"
+  - id: "baarish_se_pehle"
+    title_ur: "بارش سے پہلے"
+    title_en: "Baarish Se Pehle"
+    description_ur: "بارش سے پہلے بروقت کٹائی کر کے فصل بچائی"
+    criteria: "Harvested field ahead of IMERG heavy precipitation warning"
+    icon: "harvest_umbrella"
+  - id: "bachat_spray"
+    title_ur: "بچت اسپرے"
+    title_en: "Bachat Spray"
+    description_ur: "معائنے کے بعد غیر ضروری اسپرے چھوڑ کر خرچ بچایا"
+    criteria: "Performed pest scouting and safely avoided chemical spray"
+    icon: "shield_leaf"
+  - id: "khaad_ka_sahi_waqt"
+    title_ur: "کھاد کا صحیح وقت"
+    title_en: "Khaad Ka Sahi Waqt"
+    description_ur: "ہلکی بارش کے فوراً بعد کھاد ڈالی، ضائع ہونے سے بچائی"
+    criteria: "Applied urea top-dress in optimal tillering and moisture slot"
+    icon: "fertilizer_spark"
+  - id: "poora_season"
+    title_ur: "پورا سیزن ڈائری"
+    title_en: "Poora Season"
+    description_ur: "سیزن کے تمام اہم کام روزنامچے میں درج کیے"
+    criteria: "Logged at least 5 seasonal milestones in field diary"
+    icon: "book_check"
+  - id: "hara_bhara_garmi"
+    title_ur: "ہرا بھرا گرمی"
+    title_en: "Hara Bhara Garmi"
+    description_ur: "گرمیوں میں خالی کھیت کے بجائے ماش یا چارہ کاشت کیا"
+    criteria: "Adopted summer rotation crop plan from AquaCrop replay"
+    icon: "sun_sprout"
+  - id: "mentor"
+    title_ur: "ساتھی رہنما"
+    title_en: "Mentor"
+    description_ur: "گاؤں کے دوسرے کسانوں کے ساتھ مشورہ شیئر کیا"
+    criteria: "Opted into village leaderboard and inspired neighbors"
+    icon: "people_group"
+
+barkat_scene_stages:
+  - stage: 0
+    maunds_threshold: 0.0
+    elements: ["dry_patch", "small_hut", "two_hens"]
+    title_ur: "ابتدا — مٹی کی تیاری"
+  - stage: 1
+    maunds_threshold: 5.0
+    elements: ["green_shoots", "repaired_roof", "milch_cow", "happy_farmer"]
+    title_ur: "پہلی برکت — سبز کونپلیں"
+  - stage: 2
+    maunds_threshold: 15.0
+    elements: ["lush_wheat_field", "water_storage_tank", "two_cows", "family_courtyard"]
+    title_ur: "بڑھتی خوشحالی — پانی کا تالاب"
+  - stage: 3
+    maunds_threshold: 30.0
+    elements: ["golden_tall_wheat", "brick_house", "dairy_herd", "tubewell_solar"]
+    title_ur: "پکی فصل اور مویشی"
+  - stage: 4
+    maunds_threshold: 60.0
+    elements: ["tractor_in_courtyard", "brick_mansion", "silos_full_of_wheat", "thriving_village"]
+    title_ur: "مکمل برکت — ٹریکٹر اور خوشحال گھرانہ"

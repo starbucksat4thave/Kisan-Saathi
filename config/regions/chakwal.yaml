@@ -1,0 +1,33 @@
+# Region Configuration: Chakwal Tehsil (Pothohar Barani Agro-Ecological Zone)
+# Bounding box is approximate: [lon_min, lat_min, lon_max, lat_max]
+
+region:
+  id: "chakwal"
+  name_en: "Chakwal Tehsil"
+  name_ur: "تحصیل چکوال"
+  district: "Chakwal"
+  division: "Rawalpindi"
+  country: "Pakistan"
+  bbox: [72.3, 32.5, 73.3, 33.3] # Approximate bounding box
+  center: [72.86, 32.93] # Dhudial / Chakwal center
+  elevation_m: 575
+  agro_ecological_zone: "Rainfed Pothohar Plateau (Zone III-A)"
+  avg_annual_rainfall_mm: 550
+  dominant_soils: ["loam", "sandy_loam", "silt_loam"]
+  major_villages:
+    - name_ur: "ڈھڈیال"
+      name_en: "Dhudial"
+      lat: 32.95
+      lon: 72.88
+    - name_ur: "بھون"
+      name_en: "Bhaun"
+      lat: 32.88
+      lon: 72.75
+    - name_ur: "کلر کہار"
+      name_en: "Kallar Kahar"
+      lat: 32.78
+      lon: 72.70
+    - name_ur: "چکوال شہر"
+      name_en: "Chakwal City"
+      lat: 32.93
+      lon: 72.86

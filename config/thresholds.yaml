@@ -1,0 +1,90 @@
+# Agronomy Thresholds for Rabi Wheat in Pothohar (Chakwal / Barani)
+# Note: All values are DRAFT until verified by Punjab Agriculture Extension & Barani Agricultural Research Institute (BARI), Chakwal.
+
+crop_stages:
+  crop: wheat
+  variety_defaults: ["Akbar-19", "Fakhar-e-Bhakkar", "Ujala-16", "Ehsan-16"]
+  base_temperature_c: 0.0
+  gdd_thresholds:
+    emergence:
+      gdd: 150
+      status: DRAFT
+      source: "PARC Wheat Phenology Guidelines 2023 (Chakwal rainfed conditions)"
+    tillering:
+      gdd: 450
+      status: DRAFT
+      source: "BARI Agronomy manual for Pothohar"
+    jointing:
+      gdd: 750
+      status: DRAFT
+      source: "CIMMYT-Pakistan Wheat Guide"
+    heading:
+      gdd: 1200
+      status: DRAFT
+      source: "BARI Agronomy manual"
+    anthesis:
+      gdd: 1350
+      status: DRAFT
+      source: "CIMMYT-Pakistan Wheat Guide"
+    maturity:
+      gdd: 2000
+      status: DRAFT
+      source: "Punjab Extension Rabi Advisory 2024"
+
+wattar_sowing:
+  smap_surface_moisture_min_m3_m3: 0.20
+  smap_surface_moisture_max_m3_m3: 0.35
+  recent_rain_7d_min_mm: 10.0
+  forecast_heavy_rain_48h_limit_mm: 20.0
+  status: DRAFT
+  source: "Field trial observations, BARI Chakwal 2022-2024 (placeholder pending trial publish)"
+
+urea_top_dress:
+  target_stage: tillering
+  forecast_rain_48h_limit_mm: 10.0
+  preferred_condition: "Within 24 hours after light shower (4-8mm) or when rootzone moisture > 0.22"
+  dose_bag_per_acre: 1.0
+  status: DRAFT
+  source: "Punjab Agriculture Department Barani Wheat Fertilizer Recommendations (DRAFT)"
+
+frost_protection:
+  tmin_threshold_c: 2.0
+  active_months: ["12", "01", "02"]
+  status: DRAFT
+  source: "Pakistan Met Department Agro-meteorological Advisory"
+
+pest_scouting:
+  aphid:
+    min_temp_c: 15.0
+    max_temp_c: 28.0
+    relative_humidity_min_pct: 60.0
+    trigger_action: "Scout 20 plants across 4 field spots; do not spray unless pest threshold exceeded"
+    status: DRAFT
+    source: "Directorate General Pest Warning and Quality Control of Pesticides Punjab"
+  yellow_rust:
+    min_temp_c: 10.0
+    max_temp_c: 22.0
+    relative_humidity_min_pct: 75.0
+    trigger_action: "Examine lower leaves for yellow pustule stripes in damp morning hours"
+    status: DRAFT
+    source: "CIMMYT Wheat Pathology protocol"
+
+spray_window:
+  rain_prob_max_6h_pct: 40.0
+  wind_speed_max_kmh: 15.0
+  tmax_limit_c: 30.0
+  status: DRAFT
+  source: "Agrochemical safety standards for field application"
+
+terminal_heat:
+  tmax_critical_c: 32.0
+  vulnerable_stages: ["anthesis", "grain_filling"]
+  status: DRAFT
+  source: "NARC Climate Change & Wheat Resilience Studies"
+
+harvest_readiness:
+  gdd_min: 2000
+  ndvi_drop_from_peak_pct: 40.0
+  forecast_safe_dry_window_days: 3
+  status: DRAFT
+  source: "FAO harvest timing standards"

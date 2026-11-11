@@ -1,0 +1,44 @@
+# Loss Factors for Barkat (Estimated Maunds Saved)
+# Formula: Maunds Saved = expected_yield_maund_per_acre * field_area_acre * loss_factor
+# Note: Marked as placeholder until formal randomized control trial (RCT) results are published.
+
+loss_factors:
+  - id: "sowing_delay_heat_avoidance"
+    risk: "late_sowing_terminal_heat"
+    crop: "wheat"
+    loss_fraction: 0.15
+    basis_description: "Timely sowing in Nov before Nov 15 avoids terminal heat shrivel in March"
+    source: "NARC Barani trials: 1% grain weight loss per day of delay after Nov 15 (placeholder)"
+    placeholder: true
+
+  - id: "wattar_germination_failure"
+    risk: "dry_sowing_seed_rot"
+    crop: "wheat"
+    loss_fraction: 0.20
+    basis_description: "Ensuring proper soil wattar before drilling prevents patchy germination"
+    source: "BARI Chakwal agronomy survey 2021 (placeholder)"
+    placeholder: true
+
+  - id: "urea_washout_prevention"
+    risk: "heavy_rain_runoff"
+    crop: "wheat"
+    loss_fraction: 0.10
+    basis_description: "Top-dressing before light rain instead of heavy downpour preserves 1 bag urea value"
+    source: "Soil Science Society of Pakistan fertilizer efficiency brief (placeholder)"
+    placeholder: true
+
+  - id: "scouting_unnecessary_spray_saved"
+    risk: "cost_and_beneficial_insect_loss"
+    crop: "wheat"
+    loss_fraction: 0.08
+    basis_description: "Skipping unnecessary prophylactic pesticide spray saves cost equivalent to 2.5 maunds"
+    source: "CIMMYT IPM economics sheet (placeholder)"
+    placeholder: true
+
+  - id: "harvest_rain_wheat"
+    risk: "unseasonal_pre_harvest_rain_and_hail"
+    crop: "wheat"
+    loss_fraction: 0.25
+    basis_description: "Harvesting 2 days prior to unseasonal April downpour prevents lodging and grain sprouting"
+    source: "Post-harvest Loss Assessment, University of Agriculture Faisalabad (placeholder)"
+    placeholder: true
