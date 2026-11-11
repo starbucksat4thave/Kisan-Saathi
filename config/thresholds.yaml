@@ -1,0 +1,48 @@
+wheat:
+  gdd:
+    base_c:
+      value: 0
+      unit: celsius
+      status: DRAFT
+      source: TODO
+    emergence:
+      value: 150
+      unit: celsius_day
+      status: DRAFT
+      source: TODO
+    tillering:
+      value: 450
+      unit: celsius_day
+      status: DRAFT
+      source: TODO
+    jointing:
+      value: 750
+      unit: celsius_day
+      status: DRAFT
+      source: TODO
+    heading:
+      value: 1200
+      unit: celsius_day
+      status: DRAFT
+      source: TODO
+    anthesis:
+      value: 1350
+      unit: celsius_day
+      status: DRAFT
+      source: TODO
+    maturity:
+      value: 2000
+      unit: celsius_day
+      status: DRAFT
+      source: TODO
+  wattar_moisture_band:
+    min:
+      value: 0.2
+      unit: m3_m3
+      status: DRAFT
+      source: TODO
+    max:
+      value: 0.35
+      unit: m3_m3
+      status: DRAFT
+      source: TODO

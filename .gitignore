@@ -1,0 +1,9 @@
+.env
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store
+app/.dart_tool/
+app/build/
+app/.packages
+dashboard/node_modules/

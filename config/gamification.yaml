@@ -1,0 +1,17 @@
+points:
+  right_time_action: 20
+  high_risk_window_action: 40
+  skip_unneeded_spray_after_scout: 30
+  complete_season_diary: 100
+  weekly_streak: 10
+badges:
+  - wattar_wala
+  - baarish_se_pehle
+  - bachat_spray
+  - khaad_ka_sahi_waqt
+  - poora_season
+  - hara_bhara_garmi
+  - mentor
+anti_gaming:
+  advisory_window_only: true
+  exclude_implausible_logs: true

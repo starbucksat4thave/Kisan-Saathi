@@ -1,0 +1,12 @@
+- id: wheat_sowing_timing
+  risk: late_sowing
+  crop: wheat
+  fraction: 0.08
+  source: TODO
+  placeholder: true
+- id: harvest_rain_wheat
+  risk: harvest_rain
+  crop: wheat
+  fraction: 0.12
+  source: TODO
+  placeholder: true

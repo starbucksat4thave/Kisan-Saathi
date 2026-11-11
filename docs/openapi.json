@@ -1,0 +1,1325 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Kisan Saathi API",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "Health",
+        "operationId": "health_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Response Health Health Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/auth/otp/request": {
+      "post": {
+        "summary": "Otp Request",
+        "operationId": "otp_request_v1_auth_otp_request_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Response Otp Request V1 Auth Otp Request Post"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/auth/otp/verify": {
+      "post": {
+        "summary": "Otp Verify",
+        "operationId": "otp_verify_v1_auth_otp_verify_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Response Otp Verify V1 Auth Otp Verify Post"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/me": {
+      "get": {
+        "summary": "Get Me",
+        "operationId": "get_me_v1_me_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Farmer"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "Patch Me",
+        "operationId": "patch_me_v1_me_patch",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "title": "Payload"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Farmer"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/fields": {
+      "get": {
+        "summary": "Get Fields",
+        "operationId": "get_fields_v1_fields_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/FieldModel"
+                  },
+                  "type": "array",
+                  "title": "Response Get Fields V1 Fields Get"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create Field",
+        "operationId": "create_field_v1_fields_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FieldModel"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FieldModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/fields/{field_id}": {
+      "get": {
+        "summary": "Get Field",
+        "operationId": "get_field_v1_fields__field_id__get",
+        "parameters": [
+          {
+            "name": "field_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Field Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FieldModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/fields/{field_id}/roadmap": {
+      "get": {
+        "summary": "Get Roadmap",
+        "operationId": "get_roadmap_v1_fields__field_id__roadmap_get",
+        "parameters": [
+          {
+            "name": "field_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Field Id"
+            }
+          },
+          {
+            "name": "season",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "current",
+              "title": "Season"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RoadmapNode"
+                  },
+                  "title": "Response Get Roadmap V1 Fields  Field Id  Roadmap Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/fields/{field_id}/advisories": {
+      "get": {
+        "summary": "Get Advisories",
+        "operationId": "get_advisories_v1_fields__field_id__advisories_get",
+        "parameters": [
+          {
+            "name": "field_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Field Id"
+            }
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Date"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AdvisoryCard"
+                  },
+                  "title": "Response Get Advisories V1 Fields  Field Id  Advisories Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/diary": {
+      "post": {
+        "summary": "Post Diary",
+        "operationId": "post_diary_v1_diary_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DiaryEntry"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DiaryEntry"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/seasons/{season_id}/diary": {
+      "get": {
+        "summary": "Get Diary",
+        "operationId": "get_diary_v1_seasons__season_id__diary_get",
+        "parameters": [
+          {
+            "name": "season_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Season Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DiaryEntry"
+                  },
+                  "title": "Response Get Diary V1 Seasons  Season Id  Diary Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/fields/{field_id}/history": {
+      "get": {
+        "summary": "Get History",
+        "operationId": "get_history_v1_fields__field_id__history_get",
+        "parameters": [
+          {
+            "name": "field_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Field Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Response Get History V1 Fields  Field Id  History Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/fields/{field_id}/health": {
+      "get": {
+        "summary": "Get Field Health",
+        "operationId": "get_field_health_v1_fields__field_id__health_get",
+        "parameters": [
+          {
+            "name": "field_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Field Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Response Get Field Health V1 Fields  Field Id  Health Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/fields/{field_id}/summer-plan": {
+      "get": {
+        "summary": "Get Summer Plan",
+        "operationId": "get_summer_plan_v1_fields__field_id__summer_plan_get",
+        "parameters": [
+          {
+            "name": "field_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Field Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Response Get Summer Plan V1 Fields  Field Id  Summer Plan Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/advisories/{advisory_id}/done": {
+      "post": {
+        "summary": "Advisory Done",
+        "operationId": "advisory_done_v1_advisories__advisory_id__done_post",
+        "parameters": [
+          {
+            "name": "advisory_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Advisory Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Response Advisory Done V1 Advisories  Advisory Id  Done Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/barkat": {
+      "get": {
+        "summary": "Get Barkat",
+        "operationId": "get_barkat_v1_barkat_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Response Get Barkat V1 Barkat Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/badges": {
+      "get": {
+        "summary": "Get Badges",
+        "operationId": "get_badges_v1_badges_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/Badge"
+                  },
+                  "type": "array",
+                  "title": "Response Get Badges V1 Badges Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/leaderboard": {
+      "get": {
+        "summary": "Get Leaderboard",
+        "operationId": "get_leaderboard_v1_leaderboard_get",
+        "parameters": [
+          {
+            "name": "scope",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "village",
+              "title": "Scope"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LeaderboardEntry"
+                  },
+                  "title": "Response Get Leaderboard V1 Leaderboard Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/ask": {
+      "post": {
+        "summary": "Ask",
+        "operationId": "ask_v1_ask_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "title": "Payload"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Response Ask V1 Ask Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/escalate": {
+      "post": {
+        "summary": "Escalate",
+        "operationId": "escalate_v1_escalate_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Response Escalate V1 Escalate Post"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/partner/summary": {
+      "get": {
+        "summary": "Partner Summary",
+        "operationId": "partner_summary_v1_partner_summary_get",
+        "parameters": [
+          {
+            "name": "district",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "Chakwal",
+              "title": "District"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Response Partner Summary V1 Partner Summary Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/time-travel": {
+      "get": {
+        "summary": "Time Travel",
+        "operationId": "time_travel_v1_time_travel_get",
+        "parameters": [
+          {
+            "name": "target_date",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "title": "Target Date"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Response Time Travel V1 Time Travel Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AdvisoryCard": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "key": {
+            "type": "string",
+            "title": "Key"
+          },
+          "node_key": {
+            "type": "string",
+            "title": "Node Key"
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "info",
+              "act",
+              "alert"
+            ],
+            "title": "Severity"
+          },
+          "title_ur": {
+            "type": "string",
+            "title": "Title Ur"
+          },
+          "body_ur": {
+            "type": "string",
+            "title": "Body Ur"
+          },
+          "body_en": {
+            "type": "string",
+            "title": "Body En"
+          },
+          "audio": {
+            "type": "string",
+            "title": "Audio"
+          },
+          "act_by": {
+            "type": "string",
+            "format": "date",
+            "title": "Act By"
+          },
+          "sources": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Sources"
+          },
+          "confidence": {
+            "type": "string",
+            "enum": [
+              "high",
+              "medium",
+              "low"
+            ],
+            "title": "Confidence"
+          },
+          "memory_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MemoryRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "barkat_if_done": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/BarkatIfDone"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "key",
+          "node_key",
+          "severity",
+          "title_ur",
+          "body_ur",
+          "body_en",
+          "audio",
+          "act_by",
+          "sources",
+          "confidence",
+          "created_at"
+        ],
+        "title": "AdvisoryCard"
+      },
+      "Badge": {
+        "properties": {
+          "badge_key": {
+            "type": "string",
+            "title": "Badge Key"
+          },
+          "earned_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Earned At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "badge_key",
+          "earned_at"
+        ],
+        "title": "Badge"
+      },
+      "BarkatIfDone": {
+        "properties": {
+          "maund_estimate": {
+            "type": "number",
+            "title": "Maund Estimate"
+          },
+          "basis": {
+            "type": "string",
+            "title": "Basis"
+          },
+          "placeholder": {
+            "type": "boolean",
+            "title": "Placeholder",
+            "default": true
+          }
+        },
+        "type": "object",
+        "required": [
+          "maund_estimate",
+          "basis"
+        ],
+        "title": "BarkatIfDone"
+      },
+      "DiaryEntry": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "season_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Season Id"
+          },
+          "date": {
+            "type": "string",
+            "format": "date",
+            "title": "Date"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "sowing",
+              "fertilizer",
+              "spray",
+              "irrigation",
+              "weeding",
+              "harvest",
+              "sale",
+              "problem",
+              "note"
+            ],
+            "title": "Type"
+          },
+          "detail": {
+            "type": "object",
+            "title": "Detail"
+          },
+          "source": {
+            "type": "string",
+            "enum": [
+              "voice",
+              "tap",
+              "satellite_confirmed"
+            ],
+            "title": "Source"
+          },
+          "audio_note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Audio Note"
+          },
+          "matched_advisory_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Matched Advisory Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "season_id",
+          "date",
+          "type",
+          "source"
+        ],
+        "title": "DiaryEntry"
+      },
+      "Farmer": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "phone": {
+            "type": "string",
+            "title": "Phone"
+          },
+          "language": {
+            "type": "string",
+            "title": "Language",
+            "default": "ur"
+          },
+          "village": {
+            "type": "string",
+            "title": "Village"
+          },
+          "tehsil": {
+            "type": "string",
+            "title": "Tehsil"
+          },
+          "level": {
+            "type": "string",
+            "title": "Level"
+          },
+          "barkat_total_maund": {
+            "type": "number",
+            "title": "Barkat Total Maund",
+            "default": 0.0
+          },
+          "leaderboard_opt_in": {
+            "type": "boolean",
+            "title": "Leaderboard Opt In",
+            "default": true
+          },
+          "nickname": {
+            "type": "string",
+            "title": "Nickname"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "phone",
+          "village",
+          "tehsil",
+          "level",
+          "nickname"
+        ],
+        "title": "Farmer"
+      },
+      "FieldModel": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "farmer_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Farmer Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "area_acre": {
+            "type": "number",
+            "title": "Area Acre"
+          },
+          "geometry": {
+            "$ref": "#/components/schemas/Geometry"
+          },
+          "centroid": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array",
+            "title": "Centroid"
+          },
+          "water_access": {
+            "type": "string",
+            "enum": [
+              "rainfed",
+              "well"
+            ],
+            "title": "Water Access"
+          },
+          "soil_texture": {
+            "type": "string",
+            "enum": [
+              "loam",
+              "sandy_loam",
+              "clay_loam",
+              "unknown"
+            ],
+            "title": "Soil Texture"
+          }
+        },
+        "type": "object",
+        "required": [
+          "farmer_id",
+          "name",
+          "area_acre",
+          "geometry",
+          "centroid",
+          "water_access",
+          "soil_texture"
+        ],
+        "title": "FieldModel"
+      },
+      "Geometry": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "title": "Type",
+            "default": "Polygon"
+          },
+          "coordinates": {
+            "items": {},
+            "type": "array",
+            "title": "Coordinates"
+          }
+        },
+        "type": "object",
+        "title": "Geometry"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "LeaderboardEntry": {
+        "properties": {
+          "village": {
+            "type": "string",
+            "title": "Village"
+          },
+          "nickname": {
+            "type": "string",
+            "title": "Nickname"
+          },
+          "score": {
+            "type": "integer",
+            "title": "Score"
+          },
+          "streak_weeks": {
+            "type": "integer",
+            "title": "Streak Weeks"
+          },
+          "rank": {
+            "type": "integer",
+            "title": "Rank"
+          }
+        },
+        "type": "object",
+        "required": [
+          "village",
+          "nickname",
+          "score",
+          "streak_weeks",
+          "rank"
+        ],
+        "title": "LeaderboardEntry"
+      },
+      "MemoryRef": {
+        "properties": {
+          "season": {
+            "type": "string",
+            "title": "Season"
+          },
+          "text_ur": {
+            "type": "string",
+            "title": "Text Ur"
+          },
+          "text_en": {
+            "type": "string",
+            "title": "Text En"
+          }
+        },
+        "type": "object",
+        "required": [
+          "season",
+          "text_ur",
+          "text_en"
+        ],
+        "title": "MemoryRef"
+      },
+      "RoadmapNode": {
+        "properties": {
+          "key": {
+            "type": "string",
+            "title": "Key"
+          },
+          "order": {
+            "type": "integer",
+            "title": "Order"
+          },
+          "title_ur": {
+            "type": "string",
+            "title": "Title Ur"
+          },
+          "title_en": {
+            "type": "string",
+            "title": "Title En"
+          },
+          "window_start": {
+            "type": "string",
+            "format": "date",
+            "title": "Window Start"
+          },
+          "window_end": {
+            "type": "string",
+            "format": "date",
+            "title": "Window End"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "done",
+              "current",
+              "upcoming",
+              "missed"
+            ],
+            "title": "State"
+          },
+          "icon": {
+            "type": "string",
+            "title": "Icon"
+          },
+          "advisory_keys": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Advisory Keys"
+          }
+        },
+        "type": "object",
+        "required": [
+          "key",
+          "order",
+          "title_ur",
+          "title_en",
+          "window_start",
+          "window_end",
+          "state",
+          "icon",
+          "advisory_keys"
+        ],
+        "title": "RoadmapNode"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}
