@@ -1,0 +1,57 @@
+[
+  {
+    "fetcher": "smap",
+    "dataset": "SPL4SMGP v8",
+    "demo_cached": true
+  },
+  {
+    "fetcher": "smap_hr",
+    "dataset": "SPL2SMAP_S",
+    "demo_cached": true
+  },
+  {
+    "fetcher": "imerg",
+    "dataset": "GPM_3IMERGDF V07",
+    "demo_cached": true
+  },
+  {
+    "fetcher": "hls",
+    "dataset": "HLSL30/HLSS30 v2",
+    "demo_cached": true
+  },
+  {
+    "fetcher": "modis",
+    "dataset": "MOD13Q1/MCD12Q2",
+    "demo_cached": true
+  },
+  {
+    "fetcher": "ecostress",
+    "dataset": "ECO_L2T_LSTE v002",
+    "demo_cached": true
+  },
+  {
+    "fetcher": "power",
+    "dataset": "NASA POWER daily",
+    "demo_cached": true
+  },
+  {
+    "fetcher": "dem",
+    "dataset": "NASADEM_HGT v001",
+    "demo_cached": true
+  },
+  {
+    "fetcher": "grace",
+    "dataset": "GRACEDADM_CLSM025GL_7D v3",
+    "demo_cached": true
+  },
+  {
+    "fetcher": "forecast",
+    "dataset": "Open-Meteo",
+    "demo_cached": true
+  },
+  {
+    "fetcher": "soil",
+    "dataset": "SoilGrids 250m",
+    "demo_cached": true
+  }
+]

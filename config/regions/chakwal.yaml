@@ -1,0 +1,9 @@
+name: chakwal
+bbox:
+  lon_min: 72.3
+  lat_min: 32.5
+  lon_max: 73.3
+  lat_max: 33.3
+note: approximate bounding box
+status: DRAFT
+source: TODO

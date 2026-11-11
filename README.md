@@ -1,2 +1,5 @@
 # Kisan-Saathi
-A all-in-one AI enriched app for field level farmers
+
+All-in-one AI-enriched app for field-level farmers.
+
+See [docs/README.md](docs/README.md) for local setup.

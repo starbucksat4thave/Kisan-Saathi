@@ -1,0 +1,13 @@
+{
+  "farmer": {
+    "name": "Rashid",
+    "village": "Dhudial",
+    "tehsil": "Chakwal",
+    "area_acre": 4.0
+  },
+  "seasons": [
+    "rabi_2023_24",
+    "rabi_2024_25",
+    "rabi_2025_26"
+  ]
+}

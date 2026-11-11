@@ -1,0 +1,10 @@
+{
+  "appTitle": "Kisan Saathi",
+  "@appTitle": {
+    "description": "App name"
+  },
+  "homeTitle": "Season roadmap",
+  "@homeTitle": {
+    "description": "Home screen title"
+  }
+}

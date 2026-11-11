@@ -1,0 +1,18 @@
+wheat:
+  price_per_maund:
+    value: 3000
+    currency: PKR
+    status: DRAFT
+    source: TODO
+mungbean:
+  price_per_maund:
+    value: 9500
+    currency: PKR
+    status: DRAFT
+    source: TODO
+sorghum_fodder:
+  price_per_ton:
+    value: 18000
+    currency: PKR
+    status: DRAFT
+    source: TODO
