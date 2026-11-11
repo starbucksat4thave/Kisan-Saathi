@@ -1,6 +1,0 @@
-{
-  "name": "Kisan Saathi",
-  "description": "Voice-first mobile companion for rainfed smallholder farmers in Pothohar, utilizing NASA Earth observations for timely agronomic decisions.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}
