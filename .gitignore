@@ -1,20 +1,56 @@
-*.iml
-.gradle
-.kotlin
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
-.DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
-local.properties
+# Local environment and secrets
 .env
-# debug.keystore (kept so CI and teammates can build)
-*-debug.log
+.env.*
+!.env.example
+local.properties
+**/google-services.json
+**/GoogleService-Info.plist
+**/*service-account*.json
+**/*service_account*.json
+**/*-firebase-adminsdk-*.json
+*.pem
+*.p12
+*.pfx
+*.jks
+*.keystore
+debug.keystore
+my-upload-key.jks
 
+# Android / Gradle
+.gradle/
+.kotlin/
+**/build/
+**/.gradle/
+**/.kotlin/
+.idea/
+*.iml
+.cxx/
+.externalNativeBuild/
+captures/
+*.hprof
+
+# Flutter / Dart
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+build/
+coverage/
+**/ios/Flutter/.last_build_id
+
+# Firebase local emulator state and logs
+.firebase/
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+*-debug.log
+emulator-data/
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+.vscode/
+*.swp
+*.swo
