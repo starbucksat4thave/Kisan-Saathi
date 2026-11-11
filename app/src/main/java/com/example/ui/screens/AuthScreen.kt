@@ -53,7 +53,6 @@ import androidx.credentials.CredentialManager
 import androidx.credentials.CustomCredential
 import androidx.credentials.GetCredentialRequest
 import androidx.credentials.exceptions.GetCredentialCancellationException
-import com.example.R
 import com.example.ui.theme.BarkatGold
 import com.example.ui.theme.FieldGreen
 import com.example.ui.theme.NotoNastaliqUrdu
@@ -292,7 +291,9 @@ private fun onGoogleSignInClicked(
     onAuthCancelled: () -> Unit = {}
 ) {
     val clientId = try {
-        context.getString(R.string.default_web_client_id)
+        val resourceId = context.resources.getIdentifier("default_web_client_id", "string", context.packageName)
+        if (resourceId == 0) throw IllegalStateException("default_web_client_id resource is missing")
+        context.getString(resourceId)
     } catch (e: Exception) {
         onAuthError("Google Sign-In configuration missing: default_web_client_id not found")
         return
